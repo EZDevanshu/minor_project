@@ -1,9 +1,9 @@
 const express = require("express");
-const { getAllUsers, getUserByID, insertUser, updateUser, deleteUser } = require("../services/users.service");
-
+const { getAllUsers, getUserByID, insertUser, updateUser, deleteUser, checkLogin } = require("../services/users.service");
+const { userMiddleware } = require("../middlewares/user.middleware");
 const routeUser = express.Router();
 
-
+routeUser.use(userMiddleware);
 // get all
 routeUser.get("/" ,async (req , res)=>{
     const data = await getAllUsers()
@@ -11,25 +11,31 @@ routeUser.get("/" ,async (req , res)=>{
 })    
 
 // get by id 
-routeUser.get("/:id" , (req , res)=>{
-    const data = getUserByID(req.params.id)
+routeUser.get("/:id" ,async (req , res)=>{
+    const data = await getUserByID(req.params.id)
     res.send(data); 
 })    
+
+// Login 
+routeUser.post("/login" ,async (req , res)=>{
+    const data = await checkLogin(req.body)
+    res.send(data)
+})
 // insert 
-routeUser.post("/" , (req , res)=>{
-    const data = insertUser(req.body)
+routeUser.post("/" ,async (req , res)=>{
+    const data = await insertUser(req.body)
     res.send(data)
 })    
 
 // edit
-routeUser.put("/:id" , (req , res)=>{
-    const data = updateUser(req.params.id , req.body)
+routeUser.put("/:id" , async (req , res)=>{
+    const data = await updateUser(req.params.id , req.body)
     res.send(data)
 }) 
 
 // delete 
-routeUser.delete("/:id" , (req , res)=>{
-    const data = deleteUser(req.params.id)
+routeUser.delete("/:id" , async (req , res)=>{
+    const data = await deleteUser(req.params.id)
     res.send(data)
 })       
 

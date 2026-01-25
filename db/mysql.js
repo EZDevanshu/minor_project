@@ -7,7 +7,4 @@ const db = createPool({
     database : "minor_project",
     connectionLimit : 10
 });
-
-console.log("query type : ", typeof db.query);
-
 module.exports = db
