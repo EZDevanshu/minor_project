@@ -1,17 +1,17 @@
 const db = require("../db/mysql")
 
-async function getAll(){
+async function usersGetAll(){
     try{
-         const [data , fields] = await db.query(`SELECT * from users`)
+        const [data , fields] = await db.query(`SELECT * from users`)
         return data;
     }
     catch(err){
-        console.log("DB error :",err)
-        throw err;
+        console.log("error in get all users :",err)
+        return err;
     }
 }
  
-async function getByID(id){
+async function userGetByID(id){
     try {
         const [data , fields] = await db.query(`SELECT * FROM users WHERE UserID=${id}`);
         return data[0];
@@ -21,7 +21,7 @@ async function getByID(id){
     }
 }
 
-async function insert(formData){
+async function userInsert(formData){
     try{
         const [data , fields] = await db.query(`INSERT INTO users VALUES ('NULL' , '${formData.UserName}' , '${formData.Password}')`) 
         return data;
@@ -32,7 +32,7 @@ async function insert(formData){
     }
 }
 
-async function getByUserName(un) {
+async function userGetByUserName(un) {
     try{
         const [data , fields] = await db.query(`SELECT * FROM users WHERE UserName ='${un}'`)
         return data[0];
@@ -42,7 +42,7 @@ async function getByUserName(un) {
         throw err;
     }
 }
-async function update(id , formData){
+async function userUpdate(id , formData){
     try{
         const [data , fields] = await db.query(`UPDATE users set userName= '${formData.UserName}' , PassWord= '${formData.Password}' where UserID=${id}`) 
         return data
@@ -50,11 +50,10 @@ async function update(id , formData){
     catch(err) {
         console.log(err)
         throw err;
-
     }
 }
 
-async function deleteById(id){
+async function userDeleteById(id){
     try{
         const [data , fields] = await db.query(`DELETE FROM users where userID=${id}`) 
         return data
@@ -65,4 +64,4 @@ async function deleteById(id){
 
     }
 }
-module.exports = {getAll ,getByID , insert ,update , deleteById , getByUserName} 
+module.exports = {usersGetAll , userUpdate , userDeleteById ,userGetByUserName , userInsert , userGetByID} 

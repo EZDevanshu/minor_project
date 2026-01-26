@@ -1,7 +1,7 @@
-const { getAll, getByID, insert, update, deleteById, getByUserName } = require("../models/users.model")
+const { usersGetAll , userUpdate , userDeleteById ,userGetByUserName , userInsert , userGetByID } = require("../models/users.model")
 
 async function getAllUsers(){
-    const data = await getAll()
+    const data = await usersGetAll()
     if(data){
         return {
             error : false,
@@ -19,7 +19,7 @@ async function getAllUsers(){
 }
 
 async function getUserByID(id){
-    const data = await getByID(id)
+    const data = await userGetByID(id)
     if(data){
         return {
             error : false,
@@ -36,8 +36,8 @@ async function getUserByID(id){
     }
 }
 
-async function checkLogin(formData){
-    const data = await getByUserName(formData.UserName)
+async function userCheckLogin(formData){
+    const data = await userGetByUserName(formData.UserName)
     if(data){
         var token = jwt.sign(data, 'shhhhh');
         if(data.UserName === formData.UserName){
@@ -65,7 +65,7 @@ async function checkLogin(formData){
 
 
 async function insertUser(formData){
-    const data = await insert(formData)
+    const data = await userInsert(formData)
     if(data){
         return { 
             error : false,
@@ -82,7 +82,7 @@ async function insertUser(formData){
 }
 
 async function updateUser(id , formData){
-    const data = await update(id , formData)
+    const data = await userUpdate(id , formData)
     if(data){
         return { 
             error : false,
@@ -99,7 +99,7 @@ async function updateUser(id , formData){
 }
 
 async function deleteUser(id){
-    const data = await deleteById(id)
+    const data = await userDeleteById(id)
     if(data){
         return { 
             error : false,
@@ -114,5 +114,4 @@ async function deleteUser(id){
         };
     }
 }
-
-module.exports = {getAllUsers , getUserByID , updateUser , insertUser , deleteUser , checkLogin}
+module.exports = {getAllUsers , getUserByID , updateUser , insertUser , deleteUser , userCheckLogin}

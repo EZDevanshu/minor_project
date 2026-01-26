@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllUsers, getUserByID, insertUser, updateUser, deleteUser, checkLogin } = require("../services/users.service");
+const { getAllUsers, getUserByID, insertUser, updateUser, deleteUser, userCheckLogin } = require("../services/users.service");
 const { userMiddleware } = require("../middlewares/user.middleware");
 const routeUser = express.Router();
 
@@ -18,7 +18,7 @@ routeUser.get("/:id" ,async (req , res)=>{
 
 // Login 
 routeUser.post("/login" ,async (req , res)=>{
-    const data = await checkLogin(req.body)
+    const data = await userCheckLogin(req.body)
     res.send(data)
 })
 // insert 
