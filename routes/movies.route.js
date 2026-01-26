@@ -3,7 +3,6 @@ const { getAllMovies, getMovieByID, insertMovie, updateMovie, deleteMovie } = re
 
 
 const routeMovie = express.Router()
-// routeMovie.use();
 
 // getAll movies 
 routeMovie.get("/", async (req , res)=>{

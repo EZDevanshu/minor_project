@@ -10,8 +10,8 @@ function userMiddleware(req , res , next){
             next();
         } 
     }
-    catch(err){
-        res.status(401).send({error : err , massage : "unauthorized"})
+    catch(error){
+        res.status(401).send({error : error , massage : "unauthorized"})
     }
 }
 

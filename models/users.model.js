@@ -5,9 +5,9 @@ async function usersGetAll(){
         const [data , fields] = await db.query(`SELECT * from users`)
         return data;
     }
-    catch(err){
-        console.log("error in get all users :",err)
-        return err;
+    catch(error){
+        console.log("error in get all users :",error)
+        return error;
     }
 }
  
@@ -16,7 +16,7 @@ async function userGetByID(id){
         const [data , fields] = await db.query(`SELECT * FROM users WHERE UserID=${id}`);
         return data[0];
     }
-    catch(err){
+    catch(error){
         return false;
     }
 }
@@ -26,9 +26,9 @@ async function userInsert(formData){
         const [data , fields] = await db.query(`INSERT INTO users VALUES ('NULL' , '${formData.UserName}' , '${formData.Password}')`) 
         return data;
     }
-    catch(err) {
-        console.log(err)
-        throw err;
+    catch(error) {
+        console.log(error)
+        throw error;
     }
 }
 
@@ -37,9 +37,9 @@ async function userGetByUserName(un) {
         const [data , fields] = await db.query(`SELECT * FROM users WHERE UserName ='${un}'`)
         return data[0];
     }
-    catch(err){
-        console.log(err);
-        throw err;
+    catch(error){
+        console.log(error);
+        throw error;
     }
 }
 async function userUpdate(id , formData){
@@ -47,9 +47,9 @@ async function userUpdate(id , formData){
         const [data , fields] = await db.query(`UPDATE users set userName= '${formData.UserName}' , PassWord= '${formData.Password}' where UserID=${id}`) 
         return data
     }
-    catch(err) {
-        console.log(err)
-        throw err;
+    catch(error) {
+        console.log(error)
+        throw error;
     }
 }
 
@@ -58,9 +58,9 @@ async function userDeleteById(id){
         const [data , fields] = await db.query(`DELETE FROM users where userID=${id}`) 
         return data
     }
-    catch(err) {
-        console.log(err)
-        throw err;
+    catch(error) {
+        console.log(error)
+        throw error;
 
     }
 }

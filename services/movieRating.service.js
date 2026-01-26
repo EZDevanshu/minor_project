@@ -18,8 +18,8 @@ async function getAllMovieRating(){
 }
 
 
-async function getMovieRatingByID(){
-    const data = await movieRatingGetByID();
+async function getByIDMovieRating(id){
+    const data = await movieRatingGetByID(id);
     if(data){
         return{
             error : false, 
@@ -34,8 +34,8 @@ async function getMovieRatingByID(){
         }
     }
 }
-async function insertMovieRating(){
-    const data = await movieRatingInsert();
+async function insertMovieRating(formData){
+    const data = await movieRatingInsert(formData);
     if(data){
         return{
             error : false, 
@@ -50,8 +50,8 @@ async function insertMovieRating(){
         }
     }
 }
-async function updateMovieRating(){
-    const data = await movieRatingUpdate();
+async function updateMovieRating(id , formData){
+    const data = await movieRatingUpdate(id , formData);
     if(data){
         return{
             error : false, 
@@ -66,8 +66,8 @@ async function updateMovieRating(){
         }
     }
 }
-async function deleteMovieRating(){
-    const data = await movieRatingDelete();
+async function deleteMovieRating(id){
+    const data = await movieRatingDelete(id);
     if(data){
         return{
             error : false, 
@@ -83,4 +83,4 @@ async function deleteMovieRating(){
     }
 }
 
-module.exports = {deleteMovieRating , updateMovieRating , insertMovieRating , getMovieRatingByID, getAllMovieRating}
+module.exports = {deleteMovieRating , updateMovieRating , insertMovieRating , getByIDMovieRating, getAllMovieRating}
