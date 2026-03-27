@@ -1,4 +1,5 @@
 const { usersGetAll , userUpdate , userDeleteById ,userGetByUserName , userInsert , userGetByID } = require("../models/users.model")
+const jwt = require("jsonwebtoken");
 
 async function getAllUsers(){
     const data = await usersGetAll()
@@ -13,8 +14,7 @@ async function getAllUsers(){
         return{
             error : true,
             massage : "some error occured"
-        }
-        ;
+        }; 
     }
 }
 
@@ -31,8 +31,7 @@ async function getUserByID(id){
         return{
             error : true,
             massage : "some error occured"
-        }
-        ;
+        };
     }
 }
 
@@ -52,14 +51,13 @@ async function userCheckLogin(formData){
             error : true,
             massage : "username or password incorrect"
             }
-        }
+        };
     }
     else {
         return{
             error : true,
             massage : "username or password incorrect"
-        }
-        ;
+        };
     }
 }
 

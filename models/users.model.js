@@ -35,6 +35,7 @@ async function userInsert(formData){
 async function userGetByUserName(un) {
     try{
         const [data , fields] = await db.query(`SELECT * FROM users WHERE UserName ='${un}'`)
+        // console.log(data)
         return data[0];
     }
     catch(error){
