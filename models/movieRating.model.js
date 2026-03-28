@@ -5,10 +5,12 @@ async function movieRatingGetAll(){
         const [data , fields] = await db.query(`select * from movie_rating`);
         return data;
     }
+
     catch(error){
         console.log("some error occured in geting movie rating : ", error);
         return error;
     }
+
 }
 
 async function movieRatingGetByID(id){
